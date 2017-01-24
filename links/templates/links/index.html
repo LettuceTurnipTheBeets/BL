@@ -1,0 +1,62 @@
+{% extends "links/base.html" %}
+
+{% block content %}
+    <div data-role="page" id="pageone">
+        <div data-role="header" data-position="inline">
+            <h1>Beautiful Lindsay</h1>
+            {% if user.is_authenticated %}
+            <a href="/logout/" data-role="button" class="ui-btn-right">&nbsp&nbsp&nbsp&nbsp&nbspLogout&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+            {% else %}
+            <a href="/login/" data-role="button" class="ui-btn-right">&nbsp&nbsp&nbsp&nbsp&nbspLogin&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+            {% endif %}
+        </div>
+
+        <div data-role="main" class="ui-content">
+            <div id="heading"><b>Lindsay</b>, you may view and delete any links you like!<br><b>Users</b>, you may view and add any appropriate links you like!<br><br>The goal is to provide Lindsay with interesting links.  She can also keep track of when the link was last viewed by her.</div><br>
+
+            {% if user.is_authenticated %}
+            <div data-role="popup" id="popupDelete" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+                <div data-role="header" data-theme="a">
+                    <h1>Are you sure?</h1>
+                </div>
+                <div role="main" class="ui-content">
+                    <div id="delete_id" style="display: none;"></div>
+                        <div class="ui-field-contain">
+                            <div id="delete_title">Test Div</div>
+                        </div>
+                    <a id="button_delete" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left" data-rel="back" data-transition="flow">Delete</a>
+                    <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back">Cancel</a>
+                </div>
+            </div>
+            {% else %}
+            <a href="#popupAdd" data-rel="popup" data-position-to="window" data-transition="pop" data-role="button" class="ui-btn ui-icon-plus ui-btn-icon-left">Add Link</a><br>
+
+            <div data-role="popup" id="popupAdd" data-dismissible="false" style="max-width:400px;">
+                <div data-role="header" data-theme="a">
+                    <h1>Add Link?</h1>
+                </div>
+                <div role="main" class="ui-content">
+                    <form>
+                        <div class="ui-field-contain">
+                            <label for="title">Name:</label>
+                            <input type="text" name="text-basic" id="title" value="">
+                            <label for="link">Link:</label>
+                            <input type="text" name="text-basic" id="link" value="">
+                        </div>
+                    </form>
+                    <a id="button_add" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-icon-plus ui-btn-icon-left ui-disabled" data-rel="back" data-transition="flow">Add</a>
+                    <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back">Cancel</a>
+                </div>
+            </div>
+            {% endif %}
+
+            <ul id="linkList" data-role="listview" data-inset="true" data-split-icon="delete" data-split-theme="d">
+                {% for post in post_set %}
+                <li><a {% if user.is_authenticated %}id="{{ post.id }}" class="button-link"{% endif %} href="{{ post.link }}" target="_blank"><div id="div{{ post.id }}" {% if post.seen %}class="seen-text" {% else %}class="unseen-text"{% endif %}>{{ post.title }}{% if post.seen %} &nbsp-&nbsp viewed {{ post.viewed }}{% endif %}</div></a>{% if user.is_authenticated %}<a id="delete{{ post.id }}"></a>{% endif %}</li>
+                {% endfor %}
+            </ul>
+
+            <h4>2015 &copy; MAC rev 1.02.00</h4>
+        </div>
+    </div>
+{% endblock %}

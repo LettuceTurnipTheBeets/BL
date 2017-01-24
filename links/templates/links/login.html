@@ -1,0 +1,33 @@
+{% extends "links/base.html" %}
+
+{% block content %}
+    <div data-role="page" id="pageone">
+        <div data-role="header" data-position="inline">
+            <h1>Beautiful Lindsay</h1>
+            <a href="/" data-role="button" class="ui-btn-left">&nbsp&nbsp&nbsp&nbsp&nbspBack&nbsp&nbsp&nbsp&nbsp&nbsp</a>
+        </div>
+
+        <div data-role="main" class="ui-content">
+            {% if feedback %}
+            <ul>
+                <li><p>{{ feedback }}</p></li>
+            </ul>
+            {% endif %}
+
+            <form id="check-user" class="ui-body ui-body-a ui-corner-all" data-ajax="false" method="post" action="/login/">
+                {% csrf_token %}
+                <fieldset>
+                    <div data-role="fieldcontain">
+                        <label for="username">Username:</label>
+                        <input type="text" value="" name="username" id="username"/>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="password">Password:</label>
+                        <input type="password" value="" name="password" id="password"/>
+                    </div>
+                    <input type="submit" data-theme="b" name="submit" id="submit" value="Submit">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{%  endblock %}

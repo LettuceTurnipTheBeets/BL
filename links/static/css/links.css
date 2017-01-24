@@ -1,0 +1,56 @@
+A {
+    text-decoration: none;
+}
+
+A:hover {
+    text-decoration: underline;
+}
+
+A.seen { color: purple !important;}
+A.seen:link  { color: #4d004c;}
+A.seen:visited {text-decoration: none; color: #4d004c;}
+A.seen:hover { color: #4d004c !important;}
+A.seen:active {text-decoration: none; color: purple;}
+
+#first {
+    background: #4d004c !important;
+}
+
+.seen-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: purple;
+}
+
+.unseen-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #3366BB;
+}
+
+h4 {
+    text-align: center;
+}
+
+#heading {
+
+}
+
+#delete_title {
+    text-align: center;
+}
+
+.test {
+    width: 20em !important;
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
+    overflow:hidden !important;
+}
+
+#div1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
