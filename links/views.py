@@ -19,6 +19,9 @@ def index(request):
 
 
 def link_seen(request):
+    """
+    Called after link has been seen by the admin
+    """
     print('link_seen called')
     response = {}
 
